@@ -1,0 +1,55 @@
+{% extends 'crm/base.html' %}
+{% load static %}
+<html lang="it">
+{% block content %}
+
+<div class="hero">
+    <div class="hero__content">
+        <p class="intro-text">non esistono problemi ma solo soluzioni</p>
+        <h1 class="big-text">Informatica per tutti</h1>
+        <a href="#" class="button">Discover More</a>
+    </div>
+</div>
+
+<div class="grid mt-3">
+    <div class="col">
+        <p class="mt-2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ullam
+            saepe officia nulla molestias veritatis quisquam ab perspiciatis
+            aliquid at voluptatibus dolores odio quae vitae, ipsa delectus
+            pariatur eius repellat.
+        </p>
+    </div>
+    <div class="col">
+        <p class="mt-2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ullam
+            saepe officia nulla molestias veritatis quisquam ab perspiciatis
+            aliquid at voluptatibus dolores odio quae vitae, ipsa delectus
+            pariatur eius repellat.
+        </p>
+    </div>
+    <div class="col">
+        <h3 class="big-text">Lorem ipsum <br />sia maet</h3>
+    </div>
+</div>
+
+<common-footer></common-footer>
+<!-- Jquery-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/3.0.0/flickity.pkgd.min.js"
+    integrity="sha512-achKCfKcYJg0u0J7UDJZbtrffUwtTLQMFSn28bDJ1Xl9DWkl/6VDT3LMfVTo09V51hmnjrrOTbtg4rEgg0QArA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function () {
+        /* Open menu*/
+        $(".hamburger").on("click", function () {
+            $(".menu").toggleClass("menu--open");
+        });
+    });
+</script>
+
+{% endblock content %}
+
+</html>

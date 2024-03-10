@@ -1,0 +1,24 @@
+{% extends 'crm/base.html' %}
+<html lang="it">
+
+{% block content %}
+<h3>Crea il tuo task</h3>
+<p>Task form django</p>
+<hr>
+
+<form method="POST" autocomplete="off" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% comment  %}
+    {{ form.titolo}}
+    {{ form.descrizione}}
+    {% endcomment %}
+
+    <br>
+    {{ form.as_p}}
+    <input type="submit" value="Conferma" />
+</form>
+
+{% endblock content %}
+
+</html>

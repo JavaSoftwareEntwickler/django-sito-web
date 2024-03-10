@@ -1,0 +1,20 @@
+{% extends 'crm/base.html' %}
+
+<html lang="it">
+{% block content %}
+<h3> Singolo Task </h3>
+<br>
+{{task}}
+<br>
+{{task.id}}
+<br>
+{{task.titolo}}
+<br>
+{{task.descrizione}}
+
+<br>
+{{task.user}}
+<br>
+{% endblock content %}
+
+</html>

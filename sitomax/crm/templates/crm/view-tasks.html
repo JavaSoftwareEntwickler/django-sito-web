@@ -1,0 +1,79 @@
+{% extends 'crm/base.html' %}
+{% load static %}
+
+<html lang="it">
+{% block content %}
+
+{% if tasks|length > 0 %}
+
+{% for task in tasks %}
+<br><br><br><br><br><br><br><br>
+<div class="blog-card">
+    <div class="meta">
+        <div class="photo" style="background-image: url(/media/{{task.img}})"></div>
+        <ul class="details">
+            <li class="author"><a href="#">{{ task.user }}</a></li>
+            <li class="date">{{ task.data_ins }}</li>
+            <li class="tags">
+                <ul>
+                    <li><a href="#">Learn</a></li>
+                    <li><a href="#">Code</a></li>
+                    <li><a href="#">HTML</a></li>
+                    <li><a href="#">CSS</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="description">
+        <h1>{{ task.titolo }}</h1>
+        <h2>Opening a door to the future</h2>
+        <p> {{ task.descrizione}}.</p>
+        <p class="read-more">
+            <a href="/update-task/{{task.id}}">Modifica</a>
+        </p>
+        <p class="read-more">
+            <a href="/delete-task/{{task.id}}">Elimina</a>
+        </p>
+    </div>
+</div>
+<!-- 
+<br><br><br><br><br><br><br><br>
+<div class="blog-card alt">
+    <div class="meta">
+        <div class="photo" style="background-image: url('{% static "/images/image-2.jpg" %}')"></div>
+        <ul class="details">
+            <li class="author"><a href="#">{{ task.user }}</a></li>
+            <li class="date">{{ task.data_ins }}</li>
+            <li class="tags">
+                <ul>
+                    <li><a href="#">Learn</a></li>
+                    <li><a href="#">Code</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="description">
+        <h1>{{ task.titolo }}</h1>
+        <h2>Opening a door to the future</h2>
+        <p> {{ task.descrizione}}.</p>
+        <p class="read-more">
+            <a href="/update-task/{{task.id}}">Modifica</a>
+        </p>
+        <p class="read-more">
+            <a href="/delete-task/{{task.id}}">Elimina</a>
+        </p>
+    </div>
+</div> -->
+
+{% endfor %}
+
+{% else %}
+<h5>non ci sono task</h5>
+{{tasks|length}}
+{% endif %}
+
+
+{% endblock content %}
+
+</html>

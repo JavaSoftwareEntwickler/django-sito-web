@@ -1,0 +1,20 @@
+{% extends 'crm/base.html' %}
+<html lang="it">
+
+{% block content %}
+<h3>Elimina il tuo task</h3>
+<p>Task form django</p>
+<hr>
+
+<form method="POST" autocomplete="off" enctype="multipart/form-data">
+    {% csrf_token %}
+    <br>
+    <p>Sei sicuro?</p>
+    <input type="submit" value="Si ..Cancella il task" />
+    <a href="{% url 'view-tasks/' %}">No ..Torna ai miei corsi</a>
+
+</form>
+
+{% endblock content %}
+
+</html>

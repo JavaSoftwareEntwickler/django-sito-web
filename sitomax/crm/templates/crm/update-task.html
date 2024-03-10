@@ -1,0 +1,20 @@
+{% extends 'crm/base.html' %}
+<html lang="it">
+
+{% block content %}
+<h3>Modifica il tuo task</h3>
+<p>Task form django</p>
+<hr>
+
+<form method="POST" autocomplete="off" enctype="multipart/form-data">
+    {% csrf_token %}
+    <br>
+
+    {{updateTask.as_p}}
+    <input type="submit" value="Conferma le modifiche" />
+    <a href="{% url 'view-tasks/' %}">Non modificare ma Torna ai miei corsi</a>
+</form>
+
+{% endblock content %}
+
+</html>

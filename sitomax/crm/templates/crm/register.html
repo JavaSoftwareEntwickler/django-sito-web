@@ -1,0 +1,82 @@
+{% extends 'crm/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+<html lang="it">
+
+{% block content %}
+
+<!-- <div class="hero">
+      <div class="hero__content">
+        <p class="intro-text">non esistono problemi ma solo soluzioni</p>
+        <h1 class="big-text">Informatica per tutti</h1>
+        <a href="#" class="button">Discover More</a>
+      </div>
+    </div> -->
+
+<div class="container mt-2_5">
+  <div class="text-container">
+    <h1 class="big-text">Non sei ancora registrato?</h1>
+    <h3 class="normal-text">Cosa aspetti? Tanti vantaggi ti aspettano!</h3>
+    <p>
+      Dopo esserti registrato, riceverai una mail di riepilogo nella quale
+      ti verranno <br />
+      illustrati tutti benefici esclusivi riservati ai membri del sito.
+    </p>
+  </div>
+  <div class="form-container">
+    <button class="tryIt">
+      <span class="bold">Iscrizione a membership esclusiva</span>
+    </button>
+
+    <form method="POST" autocomplete="off" enctype="multipart/form-data">
+      {% csrf_token %}
+      <br>
+      {{ FormUser|crispy }}
+      <input class="trialBtn" type="submit" value="Registrati" />
+      <p class="description">
+        Facendo click su questo bottone, accetterai in automatico i
+        <a href="#">Termini e le Condizioni</a> del sito. Subito dopo
+        riceverai una mail di conferma e potrai iniziare a usufruire di
+        tutti i vantaggi.
+      </p>
+    </form>
+  </div>
+</div>
+<!-- Jquery-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+  integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- <script
+        src="https://www.google.com/recaptcha/enterprise.js?render=6LcWC78oAAAAAIeN1AF6VeSTBDVjtoJcVxvREWsH"
+        async
+        defer
+      ></script>
+      <script>
+        function onClick(e) {
+          e.preventDefault();
+          grecaptcha.enterprise.ready(async () => {
+            const token = await grecaptcha.enterprise.execute(
+              "6LcWC78oAAAAAIeN1AF6VeSTBDVjtoJcVxvREWsH",
+              { action: "LOGIN" }
+            );
+            // IMPORTANT: The 'token' that results from execute is an encrypted response sent by
+            // reCAPTCHA Enterprise to the end user's browser.
+            // This token must be validated by creating an assessment.
+            // See https://cloud.google.com/recaptcha-enterprise/docs/create-assessment
+          });
+        }
+      </script> -->
+
+<script>
+  $(document).ready(function () {
+    /* Open menu*/
+    $(".hamburger").on("click", function () {
+      $(".menu").toggleClass("menu--open");
+    });
+  });
+</script>
+
+
+{% endblock content %}
+
+</html>

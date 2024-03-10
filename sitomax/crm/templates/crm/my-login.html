@@ -1,0 +1,93 @@
+{% extends 'crm/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+<html lang="it">
+
+{% block content %}
+
+<!-- <div class="hero">
+      <div class="hero__content">
+        <p class="intro-text">non esistono problemi ma solo soluzioni</p>
+        <h1 class="big-text">Informatica per tutti</h1>
+        <a href="#" class="button">Discover More</a>
+      </div>
+    </div> -->
+
+<div class="container mt-2_5">
+    <div class="text-container">
+        <div class="area_riservata_img">
+            <img src="{% static 'images/luchetto.png' %}" alt="luchetto di sicurezza" />
+            <h1 class="big-text">&nbsp;Area Riservata</h1>
+        </div>
+
+        <h3 class="normal-text">
+            Ricordati di presentarci un/a tuo amico/a, amplierai così i tuoi
+            vantaggi.
+        </h3>
+        <p>
+            Ogni volta che un tuo amico utilizzera i nostri servizi riceverai un
+            bonus.
+        </p>
+    </div>
+    <div class="form-container">
+        <button class="tryIt">
+            <span class="bold">Login</span>
+        </button>
+        {% for messaggio in messages %}
+        {% if messaggio.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        <p class="alert alert-success float-center text-center">{{messaggio}}</p>
+        {% endif %}
+        {% endfor %}
+        <form method="POST" autocomplete="off" enctype="multipart/form-data">
+            {% csrf_token %}
+            <br>
+            {{ LoginForm.as_p }}
+            <!-- {{LoginForm|crispy}} -->
+            <input class="trialBtn" type="submit" value="Accedi" />
+            <div id="pswDimenticata">
+                <p class="description">
+                    Hai dimenticato la password?<br />
+                    <a href="#">Azzera l'attuale e richiedine una nuova</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Jquery-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- <script
+        src="https://www.google.com/recaptcha/enterprise.js?render=6LcWC78oAAAAAIeN1AF6VeSTBDVjtoJcVxvREWsH"
+        async
+        defer
+      ></script>
+      <script>
+        function onClick(e) {
+          e.preventDefault();
+          grecaptcha.enterprise.ready(async () => {
+            const token = await grecaptcha.enterprise.execute(
+              "6LcWC78oAAAAAIeN1AF6VeSTBDVjtoJcVxvREWsH",
+              { action: "LOGIN" }
+            );
+            // IMPORTANT: The 'token' that results from execute is an encrypted response sent by
+            // reCAPTCHA Enterprise to the end user's browser.
+            // This token must be validated by creating an assessment.
+            // See https://cloud.google.com/recaptcha-enterprise/docs/create-assessment
+          });
+        }
+      </script> -->
+
+<script>
+    $(document).ready(function () {
+        /* Open menu*/
+        $(".hamburger").on("click", function () {
+            $(".menu").toggleClass("menu--open");
+        });
+    });
+</script>
+
+{% endblock content %}
+
+</html>
