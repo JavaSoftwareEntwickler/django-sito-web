@@ -10,7 +10,14 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils import formats
+
+# using SendGrid's Python Library
+# https://github.com/sendgrid/sendgrid-python
 import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+
+
 
 def homepage(request):
     return render(request,'crm/index.html')
@@ -128,4 +135,21 @@ def delete_task(request, pk):
         return redirect('view-tasks/')
     return render(request, 'crm/delete-task.html')
 
+
+def invio_mail(request):
+    message = Mail(
+        from_email=os.getenv('FROM_MAIL'),
+        to_emails=os.getenv('TO_MAIL'),
+        subject='Sending with Twilio SendGrid is Fun',
+        html_content='<strong>and easy to do anywhere, even with Python</strong>')
+    try:
+        sg = SendGridAPIClient(os.getenv('SENDGRID_API_KEY'))
+        response = sg.send(message)
+        print(f'status code : {response.status_code}')
+        print(f'response body : {response.body}')
+        print(f'response headers : {response.headers}')
+    except Exception as e:
+        print(e.message)
+        return redirect('view-tasks/')
+    return render(request, 'crm/view-tasks.html')
 
