@@ -3,7 +3,7 @@ from .models import Task
 from .forms import TaskForm, CreateUserForm, LoginForm
 from . constants import ImageWidth
 from PIL import Image
-from .utils import get_new_image_dimensions, resize_image
+from .utils import get_new_image_dimensions, resize_image, invio_messaggio_mail
 from django.http import HttpResponse
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login, logout
@@ -43,6 +43,7 @@ def my_login(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 auth.login(request, user)
+                invio_messaggio_mail(user.email, 'Un nuovo dispositivo sta usando il tuo account', f"<strong>Un nuovo dispositivo sta usando il tuo account..</strong>Ciao {user.username},\nun nuovo dispositivo ha effettuato l'accesso al tuo account digitalWorld,\n{user.email}.")
                 return redirect('dashboard/')
     form = LoginForm()
     context = { 'LoginForm': form }

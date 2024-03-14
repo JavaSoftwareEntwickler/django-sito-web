@@ -1,5 +1,8 @@
 from typing import Tuple
 from PIL import Image
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 
 def get_new_image_dimensions( orig_dim: Tuple[int, int], new_width: int) -> Tuple[int, int]:
@@ -18,3 +21,14 @@ def resize_image(original_image: Image, width: int) -> Image:
     
     return image.resize(new_size, Image.Resampling.LANCZOS)
 
+def invio_messaggio_mail(mail, oggetto, messaggio):
+    try:
+        SendGridAPIClient(os.getenv('SENDGRID_API_KEY')).send(
+            Mail(
+                from_email=os.getenv('FROM_MAIL'),
+                to_emails=mail,
+                subject=oggetto,
+                html_content=messaggio)
+        )
+    except Exception as e:
+        print(e.message)
