@@ -1,23 +1,18 @@
-from django.shortcuts import render, redirect
-from .models import Task
-from .forms import TaskForm, CreateUserForm, LoginForm
-from . constants import ImageWidth
-from PIL import Image
-from .utils import get_new_image_dimensions, resize_image, invio_messaggio_mail
-from django.http import HttpResponse
-from django.contrib.auth.models import auth
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+import os
 from django.contrib import messages
+from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import auth
 from django.utils import formats
+from django.shortcuts import render, redirect
 
 # using SendGrid's Python Library
 # https://github.com/sendgrid/sendgrid-python
-import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
-
-
+from .models import Task
+from .forms import TaskForm, CreateUserForm, LoginForm
+from .utils import invio_messaggio_mail
 
 def homepage(request):
     return render(request,'crm/index.html')
